@@ -8,10 +8,18 @@ import java.sql.Timestamp;
 public class Users {
 
     private Long id;
+    @Column(name = "photourl")
     private String photourl;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "role")
     private String role;
+
     @Column(name = "online")
     private Boolean online;
 
@@ -28,7 +36,7 @@ public class Users {
         model.setUsername(entity.getUsername());
         model.setEmail(entity.getEmail());
         model.setRole(entity.getRole());
-        model.setOnline(entity.isOnline());
+        model.setOnline(entity.isOnline("current"));
         model.setStatusTimestamp(entity.getStatusTimestamp());
         return model;
     }

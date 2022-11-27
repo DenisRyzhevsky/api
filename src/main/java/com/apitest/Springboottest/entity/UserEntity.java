@@ -82,7 +82,7 @@ public class UserEntity {
         this.role = role;
     }
 
-    public Boolean isOnline() {
+    public Boolean isOnline(String current) {
         return online;
     }
 

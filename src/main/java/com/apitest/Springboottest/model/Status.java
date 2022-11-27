@@ -3,12 +3,16 @@ package com.apitest.Springboottest.model;
 
 import com.apitest.Springboottest.entity.UserEntity;
 
+import javax.persistence.Column;
+
 public class Status {
 
     private Long id;
 
+    @Column(name = "oldStatus")
     private Boolean oldStatus;
 
+    @Column(name = "currentStatus")
     private Boolean currentStatus;
 
     public Status(){
@@ -17,10 +21,11 @@ public class Status {
     public static Status toModel(UserEntity entity) {
         Status status = new Status();
         status.setId(entity.getId());
-        status.setOldStatus(!entity.isOnline());
-        status.setCurrentStatus(entity.isOnline());
+        status.setOldStatus(!entity.isOnline("old"));
+        status.setCurrentStatus(entity.isOnline("current"));
         return status;
     }
+
 
     public Long getId() {
         return id;

@@ -39,12 +39,15 @@ public class UserService {
 //        return Status.toModel(userRepo.save(user));
 //    }
 
-    public Status status(Long id) {
+
+    public Status status(Long id) throws UserNotFoundExecption {
         UserEntity user = userRepo.findById(id).get();
-        
+        if (user == null) {
+            throw new UserNotFoundExecption("Пользователь небыл найден");
+        }
+        user.setOnline(user.isOnline("current"));
         return Status.toModel(userRepo.save(user));
     }
-
 
 
 }
